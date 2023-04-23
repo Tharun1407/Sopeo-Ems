@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee page</title>
+    <link rel="stylesheet" href="static/employee.css">
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid rgb(16, 15, 15);
+        padding: 10px;
+    }
+</style>
+
+<body>
+    {% include "header.html" %}
+    <div class="emp">
+        <h1 class="heading">Employees List</h1>
+        <div class="emp-con">
+            <table>
+                <tr>
+                    <th class="th">Name</th>
+                    <th class="th">post</th>
+                    <th class="th">Department</th>
+                    <th class="th">City</th>
+                    <th class="th">Country</th>
+                    <th class="th">Zipcode</th>
+                    <th class="th">State</th>
+                    <th class="th">Active</th>
+                    <th class="th">View</th>
+                    <th class="th">Edit</th>
+                    <th class="th">Delete</th>
+                </tr>
+                {% for E in Emp %}
+                <tr>
+                    <td class="td">{{E.Name}}</td>
+                    <td class="td">{{E.Post}}</td>
+                    <td class="td">{{E.Department}}</td>
+                    <td class="td">{{E.City}}</td>
+                    <td class="td">{{E.Country}}</td>
+                    <td class="td">{{E.Zipcode}}</td>
+                    <td class="td">{{E.State}}</td>
+                    <td class="td">{{E.Active}}</td>
+                    <td class="td"><a type="submit" href="/EmployeeDetails/{{E.id}}">View</a></td>
+                    <td class="td"><a type="submit" href="{% url 'EditEmployee' E.id %}">Edit</a></td>
+                    <td class="td"><a type="submit" href="{% url 'deleteEmployee' E.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <button class="btn btn-primary"><a style = "color:white" href = "/">Back To Home</a></button>
+        </div>
+    </div>
+    {% include "footer.html"%}
+</body>
+
+</html>

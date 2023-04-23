@@ -1,0 +1,63 @@
+.heading {
+    color: rgb(9, 9, 9);
+    margin-bottom: 15%;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-container {
+    background-image: url("https://res.cloudinary.com/ddrmohnfu/image/upload/v1682229575/scren_fj4jsb.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form1 {
+    height: 100%;
+    width: 80%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: flex-start;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+}
+
+.input-box {
+    height: 35px;
+    width: 220px;
+    margin: 10px;
+    border-style: solid;
+    border-color: rgb(210, 207, 207);
+    border-width: 2px;
+    border-radius: 5px;
+    font-family: "roboto";
+}
+
+.input-box-button {
+    height: 35px;
+    width: 200px;
+    margin: 10px;
+    background-color: rgb(5, 110, 75);
+    color: white;
+    border-width: 0px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.errorMsg {
+    color: red;
+    font-family: "roboto";
+    font-size: 15px;
+    padding: 5px;
+}

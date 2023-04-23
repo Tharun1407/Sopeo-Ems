@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/edit.css">
+    <title>Document</title>
+</head>
+<style>
+    .emp-con {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 25px;
+    }
+    
+    * {
+        margin: 0px;
+    }
+    
+    .emp {
+        background-image: url("https://res.cloudinary.com/ddrmohnfu/image/upload/v1682229575/scren_fj4jsb.jpg");
+        background-size: cover;
+        height: 100vh;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .row {
+        display: flex;
+        flex-direction: row;
+        margin: 8px;
+    }
+    
+    .card1 {
+        border-style: solid;
+        border-width: 3px;
+        border-color: rgb(2, 68, 68);
+        padding: 35px;
+        margin: 10px;
+    }
+    
+    h4 {
+        width: 200px;
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    input {
+        background-color: transparent;
+        border-color: rgb(20, 65, 104);
+        border-radius: 5px;
+    }
+    
+    .sub {
+        color: white;
+        background-color: blue;
+        border-width: 0px;
+        border-radius: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-family: roboto;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    {% include "header.html" %}
+    <div class="emp">
+        {% for i in Data %}
+        <div class="emp-con">
+            <form action='/update/{{i.id}}/' method="POST">
+                {% csrf_token %}
+                <div class="card1">
+                    <div class="row">
+                        <h4>Name:</h4>
+                        <input value="{{i.Name}}" class=" input-box" type="text" name="Name" placeholder="Enter Your Name" required /><br/>
+                    </div>
+                    <!-- <input class="input-box" type="date" name="DOB" placeholder="Enter Your DOB" /><br/> -->
+                    <div class="row">
+                        <h4>Date of Birth:</h4>
+                        <input value="{{i.DOB}}" class="input-box" name="DOB" placeholder="Date of Birth" type="text" onfocus="(this.type='date')" id="date" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>Date of Join:</h4>
+                        <input value="{{i.DOJ}}" class="input-box" name="DOJ" placeholder="Date of Join" type="text" onfocus="(this.type='date')" id="date" required/><br/>
+                    </div>
+                    <!-- <input class="input-box" type="date" name="DOJ" placeholder="Enter Your DOJ" /><br/> -->
+
+                    <div class="row">
+                        <h4>Department:</h4>
+                        <input value="{{i.Department}}" class="input-box" type="text" name="Department" placeholder="Enter Your Department Name" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>Name:</h4>
+                        <input value="{{i.Post}}" class="input-box" type="text" name="Post" placeholder="Enter Your Post Name" /><br/>
+                    </div>
+                    <div class="row">
+                        <h4>Address:</h4>
+                        <input value="{{i.Address}}" class="input-box" type="text" name="Address" placeholder="Enter Your Address Name" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>City:</h4>
+                        <input value="{{i.City}}" class="input-box" type="text" name="City" placeholder="Enter Your City Name" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>Country:</h4>
+                        <input value="{{i.Country}}" class="input-box" type="text" name="Country" placeholder="Enter Your Country Name" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>Zipcode:</h4>
+                        <input value="{{i.Zipcode}}" class="input-box" type="Number" name="Zipcode" placeholder="Enter Your Zipcode Name" required/><br/>
+                    </div>
+                    <div class="row">
+                        <h4>State:</h4>
+                        <input value="{{i.State}}" class="input-box" type="text" name="State" placeholder="Enter Your State Name" required/><br/>
+                    </div>
+                </div>
+                <input class="sub" type="submit" value="Update" href='/employee.html' />
+
+            </form>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    {% include "footer.html"%}
+</body>
+
+</html>

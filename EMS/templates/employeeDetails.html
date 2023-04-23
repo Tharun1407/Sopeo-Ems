@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="static/Details.css">
+
+</head>
+<style>
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 5px;
+    }
+    
+    .tg td {
+        border-color: rgb(12, 12, 12);
+        border-style: solid;
+        border-width: 2px;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+    
+    .tg th {
+        border-color: rgb(8, 7, 7);
+        border-style: solid;
+        border-width: 2px;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        font-weight: normal;
+        overflow: hidden;
+        padding: 15px 5px;
+        word-break: normal;
+    }
+    
+    .tg .tg-0lax {
+        text-align: left;
+        vertical-align: top;
+        font-weight: bold;
+        color: rgb(17, 17, 18);
+    }
+    
+    .details-container {
+        background-image: url("https://res.cloudinary.com/ddrmohnfu/image/upload/v1682229575/scren_fj4jsb.jpg");
+        background-size: cover;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+    .updateBtn {
+        color: white;
+        background-color: rgb(122, 4, 69);
+        font-size: 20px;
+        font-family: "Roboto";
+        border-width: 0px;
+        border-radius: 8px;
+        padding: 7px;
+    }
+</style>
+
+<body>
+    {% include "header.html" %}
+    <div class="details-container">
+        {% for each in Details %}
+        <div>
+            <table class="tg">
+                <tbody>
+                    <tr>
+                        <td class="tg-0lax">Name</td>
+                        <td class="tg-0lax">{{each.Name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Date Of Birth</td>
+                        <td class="tg-0lax">{{each.DOB}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Date Of Joining</td>
+                        <td class="tg-0lax">{{each.DOJ}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Post</td>
+                        <td class="tg-0lax">{{each.Post}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Department</td>
+                        <td class="tg-0lax">{{each.Department}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Address</td>
+                        <td class="tg-0lax">{{each.Address}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">City</td>
+                        <td class="tg-0lax">{{each.City}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Country</td>
+                        <td class="tg-0lax">{{each.Country}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">ZipCode</td>
+                        <td class="tg-0lax">{{each.Zipcode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">State</td>
+                        <td class="tg-0lax">{{each.State}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Active</td>
+                        <td class="tg-0lax">{{each.Active}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex flex-row m-2">
+                <form class="mr-2" method="POST" action="{% url 'update_view' each.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ each.Active }}">
+                    <button class="updateBtn" type="submit">Update to True</button>
+                </form>
+                <form class="mr-2" method="POST" action="{% url 'update_view1' each.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ each.Active }}">
+                    <button class="updateBtn" type="submit">Update to False</button>
+                </form>
+                <div>
+                    <button class="updateBtn"><a style="color:white" href="/Employee">Back To Employee</a></button>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+    {% include "footer.html"%}
+</body>
+
+</html>

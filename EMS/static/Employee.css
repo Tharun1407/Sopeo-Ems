@@ -1,0 +1,40 @@
+.emp-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+
+* {
+    margin: 0px;
+}
+
+.emp {
+    background-image: url("https://res.cloudinary.com/ddrmohnfu/image/upload/v1682229575/scren_fj4jsb.jpg");
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.th {
+    color: rgb(94, 3, 205);
+    font-family: "Roboto";
+    text-decoration: underline;
+}
+
+.td {
+    color: rgb(3, 2, 2);
+    font-family: "Roboto";
+    font-weight: 600;
+}
+
+.heading {
+    color: rgb(9, 10, 10);
+    font-family: "Roboto";
+    font-size: 50px;
+    padding: 15px;
+}
