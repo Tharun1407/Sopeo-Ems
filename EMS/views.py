@@ -2,15 +2,20 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from .models import Employees
 
-# Create your views here.
+# Home Page of The Web site
 def home(request):
     emp1 = Employees.objects.all()
     count = 0 
     for e in emp1:
-        if e.Active == True:
+        if e.Active == False:
             count += 1
     emp = len(Employees.objects.all())
     return render(request,"home.html",{'emp':emp,'count':count})
+
+
+
+
+# Create Employee View : 
 
 def Create(request):
     if request.method == "POST":
@@ -62,11 +67,14 @@ def Create(request):
     else:
         return render(request,"create.html")
 
+#List Of Employees Page View:
+
 def Employee(request):
-    
     Emp = Employees.objects.all()
-    
     return render(request,"employee.html",{'Emp':Emp})
+
+
+# On Leave Employees Count and Page View : 
 
 def onLeave(request):
     Emp = Employees.objects.all()
@@ -77,13 +85,30 @@ def onLeave(request):
     print(di)
     return render(request,'onLeaveEmployee.html',{'Emp':di})        
 
+
+# Particular Employee Details View:
+
 def EmployeeDetails(request,id):
     filteredData = Employees.objects.filter(id = id)
-    return render(request,"employeeDetails.html",{'Details' : filteredData})
+    emp = Employees.objects.get(id=id)
+    if emp.Active == False:
+        emp.leave_count += 1
+        emp.save()
+    return render(request,'employeeDetails.html',{'Details':filteredData,'emp':emp})
+    
+
+
+# def incrementCount(request):
+#     if request.method == "POST":
+        
+
+# Edit Employee Page View:
 
 def EditEmployee(request,id):
     data = Employees.objects.filter(id=id)   
     return render(request,"EditEmployee.html",{'Data':data})
+
+# The Function Which Was used to Edit The Employee :
 
 def update(request,id):
     if request.method == "POST":
@@ -102,6 +127,7 @@ def update(request,id):
         return redirect('/Employee')
     return render(request,"EditEmployee.html")
 
+# The Function Which  Was used to Delete the Employee :
 
 def deleteEmployee(request,id):
     data = Employees.objects.get(id= id)
@@ -110,6 +136,7 @@ def deleteEmployee(request,id):
     return redirect('Employee')
 
 
+# The Function Which Was used To Update The Active Status To True : 
 
 def update_object(request, id):
     obj = get_object_or_404(Employees,id=id)
@@ -117,9 +144,18 @@ def update_object(request, id):
     obj.save()
     return redirect('Employee')
 
+# The Function Which Was used To Update The Active Status To False : 
 
 def update_object1(request, id):
     obj = get_object_or_404(Employees,id=id)
     obj.Active = False
+    obj.save()
+    return redirect('Employee')
+
+
+
+def reset_count(request, id):
+    obj = get_object_or_404(Employees,id=id)
+    obj.leave_count = 0
     obj.save()
     return redirect('Employee')

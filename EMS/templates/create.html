@@ -13,16 +13,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
     <title>SopeoNow</title>
-    <link rel="stylesheet" href="static/Create.css">
+    <link rel="stylesheet" href="static/create.css">
 </head>
 
 <body>
     {% include "header.html" %}
     <div class="create-container">
         <div>
-            <h1 class="heading">Create Employee</h1>
+
             <div class="form-card" style="border-color: black;">
                 <form class="form1" action='{% url "Create" %}' method="POST">
+                    <h1 class="heading">Create Employee</h1>
                     {% csrf_token %}
                     <input class="input-box" type="text" name="Name" placeholder="Enter Your Name" required /><br/>
                     <!-- <input class="input-box" type="date" name="DOB" placeholder="Enter Your DOB" /><br/> -->

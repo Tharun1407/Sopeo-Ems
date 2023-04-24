@@ -12,4 +12,5 @@ class Employees(models.Model):
     Country = models.CharField(max_length=200)
     Zipcode = models.IntegerField()
     State = models.CharField(max_length=200)
-    Active = models.BooleanField(default=False)
+    Active = models.BooleanField(default=True)
+    leave_count = models.IntegerField(default=0)
