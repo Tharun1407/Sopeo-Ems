@@ -95,12 +95,7 @@ def EmployeeDetails(request,id):
         emp.leave_count += 1
         emp.save()
     return render(request,'employeeDetails.html',{'Details':filteredData,'emp':emp})
-    
 
-
-# def incrementCount(request):
-#     if request.method == "POST":
-        
 
 # Edit Employee Page View:
 
