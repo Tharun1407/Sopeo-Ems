@@ -80,7 +80,7 @@ def onLeave(request):
     Emp = Employees.objects.all()
     di = {}
     for i in Emp:
-        if i.Active == True:
+        if i.Active == False:
             di[i] = Emp
     print(di)
     return render(request,'onLeaveEmployee.html',{'Emp':di})        
